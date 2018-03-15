@@ -156,8 +156,8 @@
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
 					"hdpi": "", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "unpackage/res/splash/开屏图片.png", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": "unpackage/res/splash/开屏图片.png"
+					"xhdpi": "unpackage/res/splash/启动图片.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "unpackage/res/splash/启动图片.png"
 				}
 			},
 			"debug": true
