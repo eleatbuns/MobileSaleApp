@@ -161,7 +161,7 @@
 				}
 			},
 			"debug": true
-		},"ads":{"rp":true,"splash":true,"push":true},"adid":""
+		},"ads":{"rp":false,"splash":false,"push":false},"adid":""
 	},
 	"dependencies": {
 		"pages": {

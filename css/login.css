@@ -5,8 +5,6 @@ body {
 header {
 	margin-top: 6.5em;
 	height: 2.875em;
-	"
-
 }
 
 .sale-login-title {
@@ -49,7 +47,8 @@ header {
 .sale-login-form-submit {
 	width: 16.5em;
 }
-.sale-login-tips{
+
+.sale-login-tips {
 	margin-top: 0.5em;
 	color: #D9534F;
 	font-weight: bold;

@@ -4,37 +4,44 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title></title>
+		<title>登录</title>
 		<link rel="stylesheet" href="css/login.css" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<!--<script type="text/javascript" src="js/angular.js" ></script>-->
-		<script type="text/javascript" src="js/jquery-3.3.1.js" ></script>
-		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
-		<script type="text/javascript" src="js/login.js" ></script>
+		<script type="text/javascript" src="js/angular.js"></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/login.js"></script>
 		<style type="text/css">
-			hr{
+			hr {
 				margin-top: 0.5em;
 				color: #333333;
 			}
 		</style>
 	</head>
 
-	<body background="images/background.png" ng-app="sale-login">
+	<body background="images/background.png" ng-app="sale-app" ng-controller="sale-app-controller">
 		<header>
 			<p class="sale-login-title">请登录</p>
 		</header>
 		<div class="sale-login-form-div">
-			<form id='login-form' class="sale-login-form">
-					<img src="images/user.png" class="sale-login-form-img"/>
-					<input id='account' class="sale-login-form-input" type="text" ng-model="username" placeholder="请输入账号" autofocus="autofocus">
-					<hr />
-					<img src="images/password.png" class="sale-login-form-img"/>
-					<input id='password'class="sale-login-form-input" type="password" ng-model="password" placeholder="请输入密码">
-					<hr />
-					<input type="submit" class="btn btn-primary sale-login-form-submit" value="登录">
+			<form id='login-form' class="sale-login-form" name="login">
+				<img src="images/user.png" class="sale-login-form-img" />
+				<input id='account' class="sale-login-form-input" type="text" ng-model="username" name="username" placeholder="请输入账号" autofocus="autofocus" required="required">
+				<hr />
+				<img src="images/password.png" class="sale-login-form-img" />
+				<input id='password' class="sale-login-form-input" type="password" ng-model="password" name="password" placeholder="请输入密码" required="required">
+				<hr />
+				<input type="button" class="btn btn-primary sale-login-form-submit" value="登录">
 			</form>
-			<p class="sale-login-tips" id="sale-login-tips"></p>
+			<p class="sale-login-tips" id="sale-login-tips">
+				<span ng-show="login.username.$dirty && login.username.$invalid && login.username.$error.required">账号信息为必填项</span>
+				<span ng-show="login.password.$dirty && login.password.$invalid && login.password.$error.required">密码为必填项</span>
+			</p>
 		</div>
+		<script>
+			var app = angular.module("sale-app", []);
+			app.controller("sale-app-controller", function($scope) {});
+		</script>
 	</body>
 
 </html>
