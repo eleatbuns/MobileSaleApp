@@ -172,6 +172,16 @@
 					"css/mui.min.css",
 					"fonts/mui.ttf"
 				],
+				"priority": 0,
+				"refer": [
+					"login.html"
+				]
+			},
+			"login.html": {
+				"resources": [],
+				"refer": [
+					"login.html"
+				],
 				"priority": 0
 			}
 		},
@@ -183,5 +193,8 @@
 			]
 		}
 	},
-	"fullscreen": false
+	"fullscreen": false,
+	"unpackage":[
+	  "README.md"
+	]
 }
