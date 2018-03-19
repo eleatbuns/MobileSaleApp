@@ -3,13 +3,13 @@ app.controller("sale-app-controller", function($scope, $http) {
 	$scope.loginAuthentication = function() {
 		$http({
 			method: "POST",
-			url: "http://211.87.233.73:8080/sale/login/",
+			url: "http://localhost:8080/sale/login/",
 			params: ({
-				"userAccount": $scope.useraccount,
+				"useraccount": $scope.useraccount,
 				"password": $scope.password
 			})
 		}).then(function successCallback(response) {
-			console.log("success:" + response.status)
+			console.log("success:" + response.data.result)
 		}, function errorCallback(response) {
 			console.log("error:" + response)
 		});
