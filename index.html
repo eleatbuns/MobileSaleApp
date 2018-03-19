@@ -39,6 +39,7 @@
 			<p class="sale-login-tips" id="sale-login-tips">
 				<span ng-show="login.useraccount.$dirty && login.useraccount.$invalid && login.useraccount.$error.required">账号信息为必填项</span>
 				<span ng-show="login.password.$dirty && login.password.$invalid && login.password.$error.required">密码为必填项</span>
+				<span id="return-message">{{ returnMessage }}</span>
 			</p>
 		</div>
 
