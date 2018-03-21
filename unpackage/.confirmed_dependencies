@@ -3,10 +3,12 @@
     "href": "index.html",
     "resources": [
       "js/mui.min.js",
-      "css/mui.min.css"
+      "css/mui.min.css",
+      "html/CustomerManagement/homepage.html"
     ],
     "refer": [
-      "login.html"
+      "login.html",
+      "html/CustomerManagement/homepage.html"
     ],
     "priority": 0
   },
