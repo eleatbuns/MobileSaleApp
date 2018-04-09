@@ -37,9 +37,6 @@ mod.directive('infiniteScroll', [
 						if($rootScope.$$phase) {
 							return scope.$eval(attrs.infiniteScroll);
 						} else {
-							if(remaining <= 10) {
-								scope.loadMore(); //在此调用加载更多的函数  
-							}
 							return scope.$apply(attrs.infiniteScroll);
 						}
 					} else if(shouldScroll) {
