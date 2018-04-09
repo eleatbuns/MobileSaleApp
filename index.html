@@ -11,6 +11,7 @@
 		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/login.js"></script>
+		<script type="text/javascript" src="js/md5.min.js" ></script>
 		<style type="text/css">
 			hr {
 				margin-top: 0.5em;
@@ -28,10 +29,10 @@
 		</header>
 		<div class="sale-login-form-div">
 			<form id='login-form' class="sale-login-form" name="login" ng-submit="loginAuthentication()">
-				<img src="images/user.png" class="sale-login-form-img" />
+				<img ng-src="images/user.png" class="sale-login-form-img" />
 				<input id='account' class="sale-login-form-input" type="text" ng-model="useraccount" name="useraccount" placeholder="请输入账号" autofocus="autofocus" required="required">
 				<hr id="account-hr" />
-				<img src="images/password.png" class="sale-login-form-img" />
+				<img ng-src="images/password.png" class="sale-login-form-img" />
 				<input id='password' class="sale-login-form-input" type="password" ng-model="password" name="password" placeholder="请输入密码" required="required">
 				<hr id="password-hr" />
 				<input type="submit" class="btn btn-primary sale-login-form-submit" value="登录" ng-disabled="!useraccount ||!password">

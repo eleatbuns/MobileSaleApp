@@ -1,20 +1,21 @@
 {
-  "index.html": {
-    "href": "index.html",
-    "resources": [
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "html/CustomerManagement/homepage.html"
-    ],
-    "refer": [
-      "login.html",
-      "html/CustomerManagement/homepage.html"
-    ],
-    "priority": 0
-  },
-  "login.html": {
-    "refer": [
-      "login.html"
-    ]
-  }
+	"index.html": {
+		"href": "index.html",
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"html/CustomerManagement/homepage.html"
+		],
+		"refer": [
+			"login.html",
+			"html/CustomerManagement/homepage.html",
+			"html/Customer/homepage.html"
+		],
+		"priority": 0
+	},
+	"login.html": {
+		"refer": [
+			"login.html"
+		]
+	}
 }

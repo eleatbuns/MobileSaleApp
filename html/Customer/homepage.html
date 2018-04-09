@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="Customer-homepage">
+
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>用户管理</title>
+		<!--<script src="https://webapi.amap.com/maps?v=1.4.5&key=b60ec68d434de00f2cdb5ae15e572fb8&plugin=AMap.Geocoder"></script>
+		<script src="//webapi.amap.com/ui/1.0/main-async.js"></script>-->
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../css/CustomerHomepage.css" />
+		<link rel="stylesheet" href="../../css/footer.css" />
+		<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/angular.js"></script>
+		<script type="text/javascript" src="../../js/CustomerHomepage.js"></script>
+		<script type="text/javascript" src="../../js/ng-infinite-scroll.js"></script>
+	</head>
+
+	<body ng-controller="homepage-controller">
+		<header>
+			<table class="header-table">
+				<tr>
+					<td class="header-avatar"><img id="avatar" class="header-avatar" src="../../images/default-avatar.png" /></td>
+					<td class="header-area"><span id="area" class="span-area" ng-bind="area"></span><span ng-hide="true">{{ area_id }}</span>
+						<img class="drop-down-triangle" ng-show="area_img_visible" src="../../images/select.png" />
+					</td>
+					<td class="header-menu"><img id="menu" class="header-menu" src="../../images/menu_u31.png" /></td>
+				</tr>
+			</table>
+		</header>
+		<div class="divcontainer" id="divcontainer" ng-class="divcontainer">
+			<div ng-if="succResult" infinite-scroll='loadMore(area_id)' infinite-scroll-distance='0' infinite-scroll-immediate-check="true">
+				<div ng-repeat='item in list'>
+					<div class="" style="height: 100px;">
+						<input type="hidden"  value="{{item.customerId}}" />
+						<label>{{item.customerName}}</label>
+						<label>{{item.customerPhone}}</label>
+						<label>{{item.customerAddress}}</label>
+					</div>
+				</div>
+				<p ng-hide="true">{{currentPage}}{{totalPage}}{{nextPage}}</p>
+			</div>
+		</div>
+		<div class="div-footer" ng-include="'../../footer.html'">
+	</body>
+	<script>
+		//		var map = new AMap.Map('divcontainer', {
+		//			resizeEnable: true
+		//		});
+		//		var marker_list = {}; //用于存储各城市的marker,方便根据城市隐藏
+		//
+		//		//初始创建地理编码对象
+		//		var geocoder = new AMap.Geocoder({
+		//			//				city: "guangzhou", //城市，默认：“全国”
+		//			radius: 1000
+		//		});
+	</script>
+
+</html>
