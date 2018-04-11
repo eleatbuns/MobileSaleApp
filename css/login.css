@@ -1,0 +1,55 @@
+body {
+	background-size: cover;
+}
+
+header {
+	margin-top: 6.5em;
+	height: 2.875em;
+}
+
+.sale-login-title {
+	font-family: '微软雅黑';
+	font-size: 2.26em;
+	font-weight: bold;
+	color: #CCC;
+	text-align: center;
+	margin: 0;
+}
+
+.sale-login-form-div {
+	width: 16.5em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1.875em;
+}
+
+.sale-login-form {
+	padding: 0;
+}
+
+.sale-login-form-input {
+	height: 2.1875em;
+	width: 13.5em;
+	vertical-align: middle;
+	outline: none;
+	border: 0;
+	background: transparent;
+	font: "微软雅黑";
+	font-size: 1em;
+	font-weight: bold;
+	color: #CCC;
+}
+
+.sale-login-form-img {
+	vertical-align: middle;
+}
+
+.sale-login-form-submit {
+	width: 16.5em;
+}
+
+.sale-login-tips {
+	margin-top: 0.5em;
+	color: #D9534F;
+	font-weight: bold;
+}

@@ -1,16 +1,49 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title></title>
-    <script src="js/mui.min.js"></script>
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-</head>
-<body>
-	
-</body>
+<html ng-app="sale-app">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录</title>
+		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/angular.js"></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/login.js"></script>
+		<script type="text/javascript" src="js/md5.min.js" ></script>
+		<style type="text/css">
+			hr {
+				margin-top: 0.5em;
+				background-color: #737373;
+				height: 1px;
+				border: none;
+				transition: width 0.5s linear;
+			}
+		</style>
+	</head>
+
+	<body background="images/background.png" ng-controller="sale-app-controller">
+		<header>
+			<p class="sale-login-title">请登录</p>
+		</header>
+		<div class="sale-login-form-div">
+			<form id='login-form' class="sale-login-form" name="login" ng-submit="loginAuthentication()">
+				<img ng-src="images/user.png" class="sale-login-form-img" />
+				<input id='account' class="sale-login-form-input" type="text" ng-model="useraccount" name="useraccount" placeholder="请输入账号" autofocus="autofocus" required="required">
+				<hr id="account-hr" />
+				<img ng-src="images/password.png" class="sale-login-form-img" />
+				<input id='password' class="sale-login-form-input" type="password" ng-model="password" name="password" placeholder="请输入密码" required="required">
+				<hr id="password-hr" />
+				<input type="submit" class="btn btn-primary sale-login-form-submit" value="登录" ng-disabled="!useraccount ||!password">
+			</form>
+			<p class="sale-login-tips" id="sale-login-tips">
+				<span ng-show="login.useraccount.$dirty && login.useraccount.$invalid && login.useraccount.$error.required">账号信息为必填项</span>
+				<span ng-show="login.password.$dirty && login.password.$invalid && login.password.$error.required">密码为必填项</span>
+				<span id="return-message">{{ returnMessage }}</span>
+			</p>
+		</div>
+		<button onclick="window.location.href='html/CustomerManagement/homepage.html'">点击到首页</button>
+	</body>
+
 </html>

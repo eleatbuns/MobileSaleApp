@@ -1,0 +1,22 @@
+.footer-table {
+	height: 3.4375em;
+	width: 100%;
+	background-color: #F3F3F3;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	z-index: 2;
+}
+
+.footer-icon {
+	widows: 1.875em;
+	height: 1.875em;
+}
+
+.icon-label {
+	margin-bottom: 0;
+	font: "微软雅黑";
+	font-size: 1em;
+	font-weight: bold;
+	color: #999999;
+}
