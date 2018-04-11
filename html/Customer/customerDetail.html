@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="customer-detail">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<title>客户详情</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../css/footer.css" />
+		<link rel="stylesheet" href="../../css/customerDetail.css" />
+		<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/angular.js"></script>
+		<script type="text/javascript" src="../../js/customerDetail.js"></script>
+	</head>
+
+	<body ng-controller="customer-detail-controller">
+		<header>
+			<table class="header-table">
+				<tr>
+					<td class="header-back" ng-click="goback()"><img id="back" class="header-back" src="../../images/returnback.png" /></td>
+					<td class="header-customer-name"><span class="separator"> | </span><span id="customer-name" class="span-name" ng-bind="customerName"></span>
+					</td>
+					<td class="header-menu"><img id="menu" class="header-menu" src="../../images/menu_u31.png" /></td>
+				</tr>
+			</table>
+		</header>
+		<div class="divcontainer" id="divcontainer" ng-class="divcontainer">
+			<div>
+				<table class="basic-information list-group-item">
+					<tr>
+						<td rowspan="4" style="text-align:center;vertical-align: top; width: 40%;"><img class="store-data" src="../../images/store-data.png" /> </td>
+						<td><br /></td>
+					</tr>
+					<tr>
+						<td class="list-item"><span class="table-label">联系电话：</span><small>{{customerPhone}}</small></td>
+					</tr>
+					<tr>
+						<td class="list-item table-label">商家地址：</td>
+					</tr>
+					<tr>
+						<td rowspan="2" style="text-align: center;vertical-align: top;" class="list-item"><small>{{customerAddress}}</small></td>
+					</tr>
+					<tr>
+						<td class="table-label" style="text-align: center;vertical-align: top;">
+							{{customerName}}
+						</td>
+
+					</tr>
+				</table>
+				<hr />
+			</div>
+			<div class="list-group-item operate-menu-bar">
+				<ul class="list-group" style="margin-bottom: 0;">
+					<li class="list-group-item" ng-click="mapNavigation()">
+						<img src="../../images/navigation.png" style="width: 2.5rem;height: 2.5rem;" />
+						<label class="list-group-label">地图导航</label>
+						<img class="img-go-forword" src="../../images/forword.png" />
+					</li>
+					<li class="list-group-item">
+						<img src="../../images/changeinfo.png" style="width: 2.5rem;height: 2.5rem;" />
+						<label class="list-group-label">更改信息</label>
+						<img class="img-go-forword" src="../../images/forword.png" />
+					</li>
+					<li class="list-group-item">
+						<img src="../../images/inventoryinfo.png" style="width: 2.5rem;height: 2.5rem;" />
+						<label class="list-group-label">盘点库存</label>
+						<img class="img-go-forword" src="../../images/forword.png" />
+					</li>
+					<li class="list-group-item">
+						<img src="../../images/buggoods.png" style="width: 2.5rem;height: 2.5rem;" />
+						<label class="list-group-label">商品选购</label>
+						<img class="img-go-forword" src="../../images/forword.png" />
+					</li>
+				</ul>
+			</div>
+			<button class="btn-danger btn-lg btn-block" data-toggle="modal" data-target="#deleteCustomer" style="margin-top: 5rem;">删除商家</button>
+		</div>
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="deleteCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+							</button>
+						<h4 class="modal-title text-warning" id="myModalLabel">确认要删除吗？</h4>
+						<p class="lead text-danger">如果确定要删除商家信息，请在下面的输入框中填写删除原因</p>
+					</div>
+					<div class="modal-body">
+						<textarea style="width: 100%;"></textarea>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning">提交更改</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
+
+	</body>
+
+</html>

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="Customer-homepage">
 
-
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -31,31 +30,31 @@
 			</table>
 		</header>
 		<div class="divcontainer" id="divcontainer" ng-class="divcontainer">
-			<div ng-if="succResult" infinite-scroll='loadMore(area_id)' infinite-scroll-distance='0' infinite-scroll-immediate-check="true">
+			<div class="itemList" ng-if="succResult" infinite-scroll='loadMore(area_id)' infinite-scroll-disabled='busy' infinite-scroll-distance='0' infinite-scroll-immediate-check="true">
 				<div ng-repeat='item in list'>
-					<div class="" style="height: 100px;">
-						<input type="hidden"  value="{{item.customerId}}" />
-						<label>{{item.customerName}}</label>
-						<label>{{item.customerPhone}}</label>
-						<label>{{item.customerAddress}}</label>
-					</div>
+					<table class="table table-striped" style="width: 100%;" ng-click="gotoDetail(item)">
+						<tr ng-hide="true">
+							<td>{{item.customerId}}</td>
+						</tr>
+						<tr>
+							<td class="table-customerId" rowspan="3">{{$index+1}}</td>
+							<td>名称：{{item.customerName}}</td>
+							<td class="table-customerId detail" rowspan="3"><img src="../../images/forword.png" /></td>
+						</tr>
+						<tr>
+							<td>联系方式：{{item.customerPhone}}</td>
+						</tr>
+						<tr>
+							<td>店铺地址：{{item.customerAddress}}</td>
+						</tr>
+					</table>
 				</div>
 				<p ng-hide="true">{{currentPage}}{{totalPage}}{{nextPage}}</p>
+				<!--<div ng-show='busy'>Loading data...</div>-->
 			</div>
 		</div>
 		<div class="div-footer" ng-include="'../../footer.html'">
 	</body>
-	<script>
-		//		var map = new AMap.Map('divcontainer', {
-		//			resizeEnable: true
-		//		});
-		//		var marker_list = {}; //用于存储各城市的marker,方便根据城市隐藏
-		//
-		//		//初始创建地理编码对象
-		//		var geocoder = new AMap.Geocoder({
-		//			//				city: "guangzhou", //城市，默认：“全国”
-		//			radius: 1000
-		//		});
-	</script>
+	
 
 </html>

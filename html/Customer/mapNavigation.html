@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html ng-app="map-navigation">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+		<title></title>
+		<style>
+			body,
+			#mapContainer {
+				margin: 0;
+				height: 100%;
+				width: 100%;
+				text-align: center;
+				font-size: 12px;
+			}
+			
+			.center {
+				position: absolute;
+				width: 100%;
+				bottom: 24px;
+			}
+			
+			.btmtip {
+				cursor: pointer;
+				border-radius: 5px;
+				background-color: #0D9BF2;
+				padding: 6px;
+				width: 160px;
+				color: white;
+				margin: 0 auto;
+				margin-top: 1rem;
+			}
+			
+			.header-table {
+				width: 100%;
+				height: 3.5rem;
+				background-color: #6A7D8F;
+				position: fixed;
+				z-index: 2;
+			}
+			
+			.header-back {
+				width: 1.33rem;
+				height: 1.33rem;
+				margin-left: 0.2rem;
+				margin-bottom: 0.2rem;
+				vertical-align: bottom;
+			}
+			
+			.header-customer-name {
+				text-align: left;
+				vertical-align: bottom;
+				padding-left: 0.6rem;
+				padding-bottom: 0.3rem;
+			}
+			
+			.separator {
+				font-size: 1rem;
+			}
+			
+			.span-name {
+				font-family: sans-serif;
+				font-size: 1rem;
+				font-weight: bold;
+				color: #FBFBFB
+			}
+			
+			#panel {
+				z-index: 999;
+				position: absolute;
+				background-color: white;
+				max-height: 100%;
+				overflow-y: auto;
+				right: 0;
+				top: 4.3rem;
+				max-height: 23rem;
+				width: 15rem;
+			}
+		</style>
+		<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main.css?v=1.0?v=1.0" />
+		<script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+		<script type="text/javascript" src="http://cache.amap.com/lbs/static/DrivingRender1230.js"></script>
+		<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+		<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.4&key=b60ec68d434de00f2cdb5ae15e572fb8&plugin=AMap.ToolBar"></script>
+		<link rel="stylesheet" href="http://cache.amap.com/lbs/static/AMap.DrivingRender1120.css" />
+		<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+		<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../js/angular.js"></script>
+	</head>
+
+	<body ng-controller="map-navigation-controller">
+		<header>
+			<table class="header-table">
+				<tr>
+					<td class="header-back" ng-click="goback()"><img id="back" class="header-back" src="../../images/returnback.png" /></td>
+					<td class="header-customer-name"><span class="separator"> | </span><span id="customer-name" class="span-name" ng-bind="customerName"></span>
+					</td>
+				</tr>
+			</table>
+		</header>
+		<div id="mapContainer"></div>
+		<div id="panel" ng-show="linedetails"></div>
+		<div class='center'>
+			<div class="btmtip" ng-click="showdetails()">查看线路详情</div>
+			<div id='bt' class="btmtip">点击去高德地图</div>
+		</div>
+		<div ng-hide="true" ng-bind="myPosition"></div>
+	</body>
+	<script>
+		var app = angular.module("map-navigation", []);
+		app.controller("map-navigation-controller", function($scope, $window, $location, $http) {
+
+			//解析客户数据信息
+			$scope.customerAddress = window.localStorage.getItem("customerAddress")
+			$scope.customerName = window.localStorage.getItem("customerName")
+
+			map = new AMap.Map("mapContainer");
+
+			var button = document.getElementById('bt');
+			AMap.plugin(["AMap.Driving"], function() {
+				var drivingOption = {
+					policy: AMap.DrivingPolicy.REAL_TRAFFIC,
+					map: map
+				};
+				var driving = new AMap.Driving(drivingOption); //构造驾车导航类
+				//根据起终点坐标规划驾车路线
+				driving.search([{
+					keyword: ""
+				}, {
+					keyword: $scope.customerAddress
+				}], function(status, result) {
+					if(status === 'complete' && result.info === 'OK') {
+						(new Lib.AMap.DrivingRender()).autoRender({
+							data: result,
+							map: map,
+							panel: "panel"
+						});
+					}
+					button.onclick = function() {
+						driving.searchOnAMAP({
+							origin: result.origin,
+							destination: result.destination
+						});
+					}
+				});
+			});
+			map.addControl(new AMap.ToolBar());
+
+
+		});
+
+		app.run(function($rootScope) {
+			$rootScope['goback'] = function() { // 当按钮被点击之后，调用，设置当前的按钮
+				window.history.back();
+			}
+			$rootScope['showdetails'] = function() {
+				var state = $rootScope.linedetails
+				if(state) {
+					$rootScope.linedetails = false;
+				}
+				if(!state) {
+					$rootScope.linedetails = true
+				}
+			}
+		})
+
+	</script>
+
+</html>
