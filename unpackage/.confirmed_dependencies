@@ -9,7 +9,8 @@
 		"refer": [
 			"login.html",
 			"html/CustomerManagement/homepage.html",
-			"html/Customer/homepage.html"
+			"html/Customer/homepage.html",
+			"html/manager/managerlogin.html"
 		],
 		"priority": 0
 	},

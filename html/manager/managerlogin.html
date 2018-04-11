@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="admin">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+		<title>管理员登录</title>
+		<link rel="stylesheet" href="../../bootstrap/css/normalize.css" />
+		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+		<script type="text/javascript" src="../../js/angular.js"></script>
+		<script src="../../bootstrap/js/jquery-3.1.1.min.js"></script>
+		<script src="../../bootstrap/js/jQueryValidation1.16.0.js"></script>
+		<script src="../../bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../bootstrap/js/messages_cn.js"></script>
+		<script type="text/javascript" src="../../js/admin-login.js"></script>
+		<style>
+			html,
+			body {
+				width: 100%;
+				overflow-x: hidden;
+			}
+			
+			.wrapper {
+				position: fixed;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				overflow-y: scroll;
+			}
+		</style>
+	</head>
+
+	<body style="background-color: #E2E2E2" ng-controller="admin-controller">
+		<div id="content" class="container">
+			<div id="right_content" class="col-sm-4 col-sm-offset-4 col-xs-12 col-lg-4 col-lg-offset-4 ">
+				<form class="" id="login-form" role="form" method="post" ng-submit="loginAuthentication()">
+					<div class="row text-center " style="font-weight: 700;font-size:24px;padding-top: 100px;margin-bottom: 20px;">
+						<div class="col-md-12">
+							登录 WELCOME
+						</div>
+					</div>
+					<hr/>
+					<div class="form-group">
+						<div class="input-group ">
+							<span class="input-group-addon">
+								<span class="glyphicon glyphicon-user "aria-hidden="true"></span>
+							</span>
+							<input type="text" class="form-control" id="pho" name="account" ng-model="account" rangelength="7,7" placeholder="用户名" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group ">
+							<span class="input-group-addon">
+								<span class="glyphicon glyphicon-lock "aria-hidden="true"></span>
+							</span>
+							<input type="password" class="form-control" id="pwd" name="password" ng-model="password" placeholder="密码" required>
+						</div>
+					</div>
+					<input type="submit" class="btn btn-primary  btn-block " value="登录">
+					<hr/>
+				</form>
+			</div>
+		</div>
+	</body>
+
+</html>

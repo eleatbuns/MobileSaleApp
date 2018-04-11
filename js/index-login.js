@@ -8,14 +8,28 @@ const SUCCESSMESSAGE = "登录成功！";
 const ACCOUNTNOTEXIST = "账户信息不存在";
 const INCORRCETPASSWORD = "密码输入错误";
 
+var count = 0;
+
 var app = angular.module("sale-app", []);
 app.controller("sale-app-controller", function($scope, $http) {
 
 	angular.element(document).ready(function() {
 		var storage = window.localStorage;
-		if(storage.getItem("useraccount") != null && storage.getItem("password") != null) {
-			var hre = 'html/Customer/homepage.html?useraccount=' + storage.getItem("useraccount");
-			window.location = hre;
+		if(storage.getItem("useraccount") != null &&
+			storage.getItem("useraccount") != 'undefined' &&
+			!angular.isUndefined(storage.getItem("useraccount")) &&
+			!angular.isUndefined(storage.getItem("password")) &&
+			storage.getItem("password") != null &&
+			storage.getItem("password") != 'undefined') {
+			window.location = 'html/Customer/homepage.html';
+		}
+		if(storage.getItem("adminaccount") != null &&
+			storage.getItem("adminaccount") != 'undefined' &&
+			!angular.isUndefined(storage.getItem("adminaccount")) &&
+			!angular.isUndefined(storage.getItem("adminpassword")) &&
+			storage.getItem("adminpassword") != null &&
+			storage.getItem("adminpassword") != 'undefined') {
+			window.location = 'html/manager/managerDetail.html';
 		}
 	});
 
@@ -45,17 +59,22 @@ function returnMessage($scope, returndata) {
 	switch(returndata) {
 		case VERIFICATIONSUCCESS:
 			//验证成功
-			$scope.returnMessage = SUCCESSMESSAGE;
+			//			$scope.returnMessage = SUCCESSMESSAGE;
 			rememberUser($scope);
 			$scope.jumpToUrl($scope.useraccount);
 			break;
 		case ACCOUNTISNULL:
 			//账户为空
-			$scope.returnMessage = ACCOUNTNOTEXIST;
+			alert(ACCOUNTNOTEXIST);
+			$scope.account = "";
+			$scope.password = "";
+			//			$scope.returnMessage = ACCOUNTNOTEXIST;
 			break;
 		case PASSWORDERROR:
 			//密码错误
-			$scope.returnMessage = INCORRCETPASSWORD;
+			alert(INCORRCETPASSWORD);
+			$scope.password = "";
+			//			$scope.returnMessage = INCORRCETPASSWORD;
 			break;
 		default:
 			break;
@@ -86,5 +105,13 @@ function rememberUser($scope) {
 		var storage = window.localStorage;
 		storage.setItem("useraccount", $scope.useraccount);
 		storage.setItem("password", $scope.password);
+	}
+}
+
+function gotoManager() {
+	count++;
+	if(count == 5) {
+		window.location.href = "html/manager/managerlogin.html"
+		count = 0;
 	}
 }

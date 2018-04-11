@@ -10,7 +10,7 @@
 		<script type="text/javascript" src="js/angular.js"></script>
 		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/login.js"></script>
+		<script type="text/javascript" src="js/index-login.js"></script>
 		<script type="text/javascript" src="js/md5.min.js" ></script>
 		<style type="text/css">
 			hr {
@@ -25,7 +25,7 @@
 
 	<body background="images/background.png" ng-controller="sale-app-controller">
 		<header>
-			<p class="sale-login-title">请登录</p>
+			<p class="sale-login-title" onclick="gotoManager()">请登录</p>
 		</header>
 		<div class="sale-login-form-div">
 			<form id='login-form' class="sale-login-form" name="login" ng-submit="loginAuthentication()">
@@ -40,10 +40,8 @@
 			<p class="sale-login-tips" id="sale-login-tips">
 				<span ng-show="login.useraccount.$dirty && login.useraccount.$invalid && login.useraccount.$error.required">账号信息为必填项</span>
 				<span ng-show="login.password.$dirty && login.password.$invalid && login.password.$error.required">密码为必填项</span>
-				<span id="return-message">{{ returnMessage }}</span>
 			</p>
 		</div>
-		<button onclick="window.location.href='html/CustomerManagement/homepage.html'">点击到首页</button>
 	</body>
 
 </html>

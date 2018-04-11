@@ -9,9 +9,22 @@ app.config(['$locationProvider', function($locationProvider) {
 }]);
 
 app.controller("homepage-controller", function($scope, $window, $location, $http) {
+
+	angular.element(document).ready(function() {
+		var storage = window.localStorage;
+		if(storage.getItem("useraccount") == null ||
+			storage.getItem("useraccount") == 'undefined' ||
+			angular.isUndefined(storage.getItem("useraccount")) ||
+			angular.isUndefined(storage.getItem("password")) ||
+			storage.getItem("password") == null ||
+			storage.getItem("password") == 'undefined') {
+			window.location = '../../index.html';
+		}
+	});
+
 	//set map size
 	$('#divcontainer').height(($window.innerHeight) - ($('#div-footer').height()))
-	//get useraccount from url
+	//get useraccount from localstage
 	$scope.account = window.localStorage.getItem("useraccount");
 	$scope.list = []
 	$scope.busy = false;

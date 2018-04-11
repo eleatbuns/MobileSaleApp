@@ -181,7 +181,8 @@
 				"priority": 0,
 				"refer": [
 					"login.html",
-					"html/Customer/homepage.html"
+					"html/Customer/homepage.html",
+					"html/manager/managerlogin.html"
 				]
 			},
 			"login.html": {
