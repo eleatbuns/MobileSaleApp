@@ -1,0 +1,77 @@
+* {
+	-webkit-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+}
+
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #FBFBFB !important
+}
+
+.container {
+	padding-top: 15rem;
+	margin: 0 !important;
+	width: 100%;
+}
+
+.upload-style {
+	margin-left: 1rem !important
+}
+
+.uploadpic {
+	width: 30rem;
+	height: 30rem;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.uploadpic-label {
+	text-align: center;
+	font-size: 4rem;
+}
+
+.upload-button {
+	width: 25rem;
+	height: 25rem;
+	padding: 0;
+}
+
+.form-style {
+	width: 100%;
+	height: 100%;
+}
+
+.input-label {
+	font-size: 3.6rem !important;
+	padding-left: 0;
+	padding-top: 0 !important;
+}
+
+.input-input {
+	font-size: 3.5rem !important;
+	vertical-align: bottom;
+}
+
+.form-div {
+	margin: 0 !important;
+}
+
+.list-ul {
+	padding-left: 0;
+}
+
+.second-input {
+	border-top: none !important;
+	border-left: none !important;
+	text-align: right;
+}
+.list-ul-li{
+	border: 0;
+	border-bottom: 1px #9D9D9D solid;
+	height: 10rem !important;
+	padding-top: 3.5rem !important;
+	vertical-align: bottom !important;
+}

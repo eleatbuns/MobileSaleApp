@@ -5,7 +5,7 @@
 	text-align: center;
 	position: fixed;
 	bottom: 0;
-	z-index: 2;
+	z-index: 999;
 }
 
 .footer-icon {

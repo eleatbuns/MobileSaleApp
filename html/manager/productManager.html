@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="product-manager">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>管理员商品管理</title>
+		<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
+		<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../js/angular.js"></script>
+		<script type="text/javascript" src="../../js/product-manager.js"></script>
+		<script type="text/javascript" src="../../js/angular-ui-router.js" ></script>
+		<!--<script type="text/javascript" src="../../js/angular-waterfall.js"></script>-->
+	</head>
+
+	<body ng-controller="product-manager-controller">
+		<!--
+        	作者：1209820112@qq.com
+        	时间：2018-04-12
+        	描述：管理员上传商品信息
+        -->
+		
+		
+		
+		<!--
+        	作者：1209820112@qq.com
+        	时间：2018-04-12
+        	描述：显示商品详情
+        -->
+		<!--<ul class="waterfall-list" ng-waterfall cols="6">
+			<li ng-repeat="image in images" repeat-finished>
+				<div class="data-block">
+					<img src="{{image.url}}" alt="{{image.summary}}" />
+					<p>{{image.title}}</p>
+					<p>{{image.summary}}</p>
+				</div>
+			</li>
+			<div class="loadMore" ng-if="loadMore" ng-infinite-scroll ng-click="loadMoreData()">{{text}}</div>
+		</ul>-->
+		<div class="div-footer" ng-include="'footer.html'">
+	</body>
+
+</html>

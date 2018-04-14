@@ -29,7 +29,7 @@ app.controller("sale-app-controller", function($scope, $http) {
 			!angular.isUndefined(storage.getItem("adminpassword")) &&
 			storage.getItem("adminpassword") != null &&
 			storage.getItem("adminpassword") != 'undefined') {
-			window.location = 'html/manager/managerDetail.html';
+			window.location = 'html/manager/productManager.html';
 		}
 	});
 
