@@ -10,7 +10,8 @@
 			"login.html",
 			"html/CustomerManagement/homepage.html",
 			"html/Customer/homepage.html",
-			"html/manager/managerlogin.html"
+			"html/manager/managerlogin.html",
+			"html/manager/productManager.html"
 		],
 		"priority": 0
 	},

@@ -182,7 +182,8 @@
 				"refer": [
 					"login.html",
 					"html/Customer/homepage.html",
-					"html/manager/managerlogin.html"
+					"html/manager/managerlogin.html",
+					"html/manager/productManager.html"
 				]
 			},
 			"login.html": {

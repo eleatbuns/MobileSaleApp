@@ -21,6 +21,9 @@ app.controller("sale-app-controller", function($scope, $http) {
 			!angular.isUndefined(storage.getItem("password")) &&
 			storage.getItem("password") != null &&
 			storage.getItem("password") != 'undefined') {
+
+			storage.removeItem("adminaccount");
+			storage.removeItem("adminpassword");
 			window.location = 'html/Customer/homepage.html';
 		}
 		if(storage.getItem("adminaccount") != null &&
@@ -29,6 +32,9 @@ app.controller("sale-app-controller", function($scope, $http) {
 			!angular.isUndefined(storage.getItem("adminpassword")) &&
 			storage.getItem("adminpassword") != null &&
 			storage.getItem("adminpassword") != 'undefined') {
+				
+			storage.removeItem("useraccount");
+			storage.removeItem("password");
 			window.location = 'html/manager/productManager.html';
 		}
 	});

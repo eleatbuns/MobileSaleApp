@@ -22,7 +22,6 @@ app.controller("admin-controller", function($scope, $http) {
 				"password": $scope.password
 			})
 		}).then(function successCallback(response) {
-			console.log(response.data);
 				returnMessage($scope, response.data);
 			},
 			function errorCallback(response) {
@@ -30,7 +29,7 @@ app.controller("admin-controller", function($scope, $http) {
 			});
 	}
 	$scope.jumpToUrl = function() {
-		location.href = 'managerDetail.html';
+		location.href = 'newStock.html';
 	};
 
 });
@@ -66,7 +65,7 @@ function rememberUser($scope) {
 		console.log("无法使用localstorage");
 	} else {
 		var storage = window.localStorage;
-		storage.setItem("adminaccount", $scope.useraccount);
+		storage.setItem("adminaccount", $scope.account);
 		storage.setItem("adminpassword", $scope.password);
 	}
 }
