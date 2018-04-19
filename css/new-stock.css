@@ -12,7 +12,6 @@ body {
 }
 
 
-
 .container {
 	padding-top: 6rem;
 	margin: 0 !important;
@@ -68,15 +67,4 @@ body {
 	border-left: none !important;
 	text-align: right;
 }
-.list-ul-li{
-	/*border: 0 !important;
-	border-bottom: 1px #9D9D9D solid !important;*/
-	/*height: 3.5rem !important;*/
-	/*padding-top: 0.9rem !important;*/
-	/*vertical-align: bottom !important;*/
-	/*display: inline !important;*/
-}
-.product-icon{
-	/*width: 5rem !important;
-	height: 3rem !important;*/
-}
+

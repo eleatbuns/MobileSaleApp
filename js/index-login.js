@@ -16,22 +16,22 @@ app.controller("sale-app-controller", function($scope, $http) {
 	angular.element(document).ready(function() {
 		var storage = window.localStorage;
 		if(storage.getItem("useraccount") != null &&
-			storage.getItem("useraccount") != 'undefined' &&
+			storage.getItem("useraccount") !== 'undefined' &&
 			!angular.isUndefined(storage.getItem("useraccount")) &&
 			!angular.isUndefined(storage.getItem("password")) &&
 			storage.getItem("password") != null &&
-			storage.getItem("password") != 'undefined') {
+			storage.getItem("password") !== 'undefined') {
 
 			storage.removeItem("adminaccount");
 			storage.removeItem("adminpassword");
 			window.location = 'html/Customer/homepage.html';
 		}
 		if(storage.getItem("adminaccount") != null &&
-			storage.getItem("adminaccount") != 'undefined' &&
+			storage.getItem("adminaccount") !== 'undefined' &&
 			!angular.isUndefined(storage.getItem("adminaccount")) &&
 			!angular.isUndefined(storage.getItem("adminpassword")) &&
 			storage.getItem("adminpassword") != null &&
-			storage.getItem("adminpassword") != 'undefined') {
+			storage.getItem("adminpassword") !== 'undefined') {
 				
 			storage.removeItem("useraccount");
 			storage.removeItem("password");
@@ -42,7 +42,7 @@ app.controller("sale-app-controller", function($scope, $http) {
 	$scope.loginAuthentication = function() {
 		$http({
 			method: "GET",
-			url: "http://192.168.137.1:8080/sale/login/",
+			url: BASEURL+"login/",
 			params: ({
 				"useraccount": $scope.useraccount,
 				"password": $scope.password
@@ -65,7 +65,6 @@ function returnMessage($scope, returndata) {
 	switch(returndata) {
 		case VERIFICATIONSUCCESS:
 			//验证成功
-			//			$scope.returnMessage = SUCCESSMESSAGE;
 			rememberUser($scope);
 			$scope.jumpToUrl($scope.useraccount);
 			break;
@@ -74,13 +73,11 @@ function returnMessage($scope, returndata) {
 			alert(ACCOUNTNOTEXIST);
 			$scope.account = "";
 			$scope.password = "";
-			//			$scope.returnMessage = ACCOUNTNOTEXIST;
 			break;
 		case PASSWORDERROR:
 			//密码错误
 			alert(INCORRCETPASSWORD);
 			$scope.password = "";
-			//			$scope.returnMessage = INCORRCETPASSWORD;
 			break;
 		default:
 			break;

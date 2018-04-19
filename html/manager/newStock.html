@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>管理员商品管理</title>
+		<title>商品上架</title>
 		<link rel="stylesheet" href="../../css/new-stock.css" />
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap-select.css" />
@@ -17,9 +17,9 @@
 		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../../js/angular.js"></script>
 		<script type="text/javascript" src="../../js/ng-file-upload.js"></script>
-		<script type="text/javascript" src="../../js/ng-file-upload-shim.min.js"></script>
 		<script type="text/javascript" src="../../js/new-stock.js"></script>
 		<script type="text/javascript" src="../../bootstrap/js/bootstrap-select.js"></script>
+		<script type="text/javascript" src="../../js/base-config.js" ></script>
 	</head>
 
 	<body ng-controller="new-stock-controller">
@@ -27,11 +27,9 @@
 		<div class="container" ng-controller="form-controller">
 			<form class="form-horizontal" id="productForm" role="form"  ng-submit="addNewProduct(product)">
 				<div class="list-group-item col-sm-12 col-lg-12 col-md-12 col-xs-12" style="padding-left: 0;">
-					<div class=" col-sm-4 col-md-4 col-lg-4 col-xs-4">
+					<div class=" col-sm-4 col-md-4 col-lg-4 col-xs-4" style="text-align: center; padding-left: 0;">
 						<div class="upload-button" type="file" capture="camera" ngf-select="uploadFiles($file,$errorfile)" ng-model="data.file" accept="image/jpeg,image/gif,image/png" ngf-max-height="1000" ngf-max-size="1MB">
-							<img class="uploadpic img-rounded" src="{{imgSrc}}" ng-model="product.img"/>
-							<input type="finle" ng-model="product.productImg" ng-bind="product.productImg=imgSrc" name="productImg" ng-hide="true"/>
-							
+							<img class="uploadpic img-rounded" src="{{imgSrc}}" ng-model="product.img" ng-bind="product.productImg=imgSrc"/>
 							<div class="glyphicon glyphicon-camera uploadpic-label">点击上传照片</div>
 						</div>
 					</div>
@@ -43,7 +41,7 @@
 							</div>
 						</div>
 						<div class="input-group-lg form-group form-div" style="padding-top: 1rem;">
-							<label for="productDetail" class="col-sm-12 col-md-12 col-lg-12 col-xs-12 input-label" style="padding-right: 0;">商品详情:</label>
+							<label class="col-sm-12 col-md-12 col-lg-12 col-xs-12 input-label" style="padding-right: 0;">商品详情:</label>
 							<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding-left:0;padding-right: 0;">
 								<textarea class="form-control input-input" rows="5" required="required" ng-id="productDetail" name="productDescription" ng-model="product.productDescription" placeholder="请详细描述商品的具体信息"></textarea>
 							</div>
@@ -56,7 +54,7 @@
 						<li class="list-group-item list-ul-li col-sm-12 col-lg-12 col-md-12 col-xs-12">
 							<div class="input-group form-group input-group-lg" style="margin-bottom: 0;">
 								<img src="../../images/costPrice.png" alt="成本" class="col-sm-2 col-md-2 col-lg-2 col-xs-2 product-icon" />
-								<label for="productCostPrice" class="col-sm-2 col-md-2 col-lg-2 col-xs-2 control-label input-label" style="padding-right: 0;margin-bottom: 0;margin-top: 0.8rem;">商品成本 </label>
+								<label class="col-sm-2 col-md-2 col-lg-2 col-xs-2 control-label input-label" style="padding-right: 0;margin-bottom: 0;margin-top: 0.8rem;">商品成本 </label>
 								<div class="col-sm-8 col-md-8 col-lg-8 col-xs-8 input-group" style="text-align: right;">
 									<input type="number" step="0.01" class="form-control input-input second-input" name="productCostPrice" ng-model="product.productCostPrice" required="required" style="padding: 0;" />
 									<label class="input-group-addon input-label">元</label>
@@ -90,7 +88,7 @@
 								<img src="../../images/zhonglei.png" alt="商品类别" class="col-sm-2 col-md-2 col-lg-2 col-xs-2 product-icon" />
 								<label for="productType" class="col-sm-2 col-md-2 col-lg-2 col-xs-2 control-label input-label" style="padding-right: 0;margin-bottom: 0;margin-top: 0.8rem;">商品种类</label>
 								<div class="col-sm-8 col-md-8 col-lg-8 col-xs-8">
-									<select class="selectpicker" id="selectpicker" data-live-search="true" data-size="8" data-style="selectbox" ng-model="product.productType" ng-options="x.productTypeName for x in type">
+									<select class="selectpicker" id="selectpicker" data-live-search="true" data-size="8" data-style="selectbox" ng-model="product.productType" data-live-search-placeholder="搜索" ng-options="x.productTypeName for x in type" required="required">
 										<option value="">请选择</option>
 									</select>
 								</div>
@@ -98,6 +96,7 @@
 						</li>
 					</ul>
 				</div>
+				
 				<div class="col-sm-12" style="text-align: center;">
 					<button type="submit" class="btn btn-primary btn-lg" style="width:10rem;height: 3rem; margin: 5rem;font-size: 1.5rem;">添加商品</button>
 				</div>
@@ -105,5 +104,8 @@
 		</div>
 		<div class="div-footer" ng-include="'footer.html'"></div>
 	</body>
-
+<script>
+	 // $('.selectpicker').selectpicker('render');
+	 // $('.selectpicker').selectpicker('refresh');
+</script>
 </html>

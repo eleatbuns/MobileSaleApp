@@ -1,43 +1,69 @@
 <!DOCTYPE html>
-<html ng-app="product-manager">
+<html lang="zh-CN" ng-app="product-manager">
 
-	<head>
-		<meta charset="UTF-8">
-		<title>管理员商品管理</title>
-		<link rel="stylesheet" type="text/css" href="../../css/footer.css" />
-		<script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
-		<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../../js/angular.js"></script>
-		<script type="text/javascript" src="../../js/product-manager.js"></script>
-		<script type="text/javascript" src="../../js/angular-ui-router.js" ></script>
-		<!--<script type="text/javascript" src="../../js/angular-waterfall.js"></script>-->
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>管理员商品管理</title>
+    <link rel="stylesheet" href="../../css/product-manager.css"/>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap-select.css"/>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/angular.js"></script>
+    <script type="text/javascript" src="../../js/angular-ui-router.js"></script>
+    <script type="text/javascript" src="../../js/angular-waterfall.js"></script>
+    <script type="text/javascript" src="../../js/product-manager.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="../../js/base-config.js"></script>
+</head>
 
-	<body ng-controller="product-manager-controller">
-		<!--
-        	作者：1209820112@qq.com
-        	时间：2018-04-12
-        	描述：管理员上传商品信息
-        -->
-		
-		
-		
-		<!--
-        	作者：1209820112@qq.com
-        	时间：2018-04-12
-        	描述：显示商品详情
-        -->
-		<!--<ul class="waterfall-list" ng-waterfall cols="6">
-			<li ng-repeat="image in images" repeat-finished>
-				<div class="data-block">
-					<img src="{{image.url}}" alt="{{image.summary}}" />
-					<p>{{image.title}}</p>
-					<p>{{image.summary}}</p>
-				</div>
-			</li>
-			<div class="loadMore" ng-if="loadMore" ng-infinite-scroll ng-click="loadMoreData()">{{text}}</div>
-		</ul>-->
-		<div class="div-footer" ng-include="'footer.html'">
-	</body>
+<body ng-controller="product-manager-controller">
+<div ng-include="'header.html'"></div>
+
+<div class="container">
+    <div class="list-group-item col-sm-12 col-lg-12 col-md-12 col-xs-12">
+        <label class="col-sm-6 col-lg-6 col-md-6 col-xs-5" style="padding-top: 0.5rem;">选择商品类别：</label>
+        <select class="selectpicker" id="selectpicker" data-live-search="true" data-size="8" data-style="selectbox"
+                ng-model="product.productType"
+                data-live-search-placeholder="搜索"
+                ng-options="x.productTypeName
+                    for
+                    x in types track by x.productTypeId">
+            <option value="">全部</option>
+        </select>
+    </div>
+</div>
+<div style="margin-top: 1rem;width: 100%">
+    <ul class="waterfall-list list-group" ng-waterfall cols="2" style="padding: 0;">
+        <li ng-repeat="image in images" repeat-finished style="list-style-type:none;float:left">
+            <div class="thumbnail">
+                <img src="{{image.productImg}}" alt="{{image.productName}}">
+                <div>
+                    <h5>{{image.productName}}
+                        <small>{{image.productDescription}}</small>
+                    </h5>
+                    <label>价格：<small>{{image.productPrice}}</small>元</label>
+                    <label style="float: right">成本：<small>{{image.productCostPrice}}</small>元</label><br>
+                    <label>库存量：<small>{{image.productQuantity}}</small></label>
+                    <label style="float: right">状态：<span style="color: #D9534F;">{{image.sellingState?'在售':'下架'}}</span></label>
+                    <p hidden>{{image.productId}}</p>
+                    <p style="text-align: center">
+                        <a href="#" class="btn btn-primary" role="button" ng-click="updateProduct(this.image)">更新</a>
+                        <a href="#" class="btn btn-danger" role="button">下架</a>
+                    </p>
+                </div>
+            </div>
+        </li>
+    <div class="loadMore" ng-if="loadMore" ng-infinite-scroll ng-click="loadMoreData()">{{loadText}}</div>
+    </ul>
+</div>
+<div class="div-footer" ng-include="'footer.html'"/>
+</body>
+<script>
+    $('.selectpicker').selectpicker('render');
+    $('.selectpicker').selectpicker('refresh');
+</script>
 
 </html>

@@ -30,7 +30,7 @@ app.controller("homepage-controller", function($scope, $window, $location, $http
 	$scope.busy = false;
 	$http({
 		method: "GET",
-		url: "http://192.168.137.1:8080/sale/seller/Message/",
+		url: BASEURL+"seller/Message/",
 		params: ({
 			"useraccount": $scope.account,
 		})

@@ -16,7 +16,7 @@ app.controller("admin-controller", function($scope, $http) {
 	$scope.loginAuthentication = function() {
 		$http({
 			method: "GET",
-			url: "http://192.168.137.1:8080/sale/admin/login/",
+			url: BASEURL+"admin/login/",
 			params: ({
 				"account": $scope.account,
 				"password": $scope.password

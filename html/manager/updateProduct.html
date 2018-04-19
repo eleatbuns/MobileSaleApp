@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="update-product">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>商品更新</title>
+    <link rel="stylesheet" href="../../css/new-stock.css"/>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap-select.css"/>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../js/angular.js"></script>
+    <script type="text/javascript" src="../../js/ng-file-upload.js"></script>
+    <script type="text/javascript" src="../../js/update-product.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="../../js/base-config.js"></script>
+</head>
+
+<body ng-controller="update-product-controller">
+<div ng-include="'header.html'"></div>
+<div class="container" ng-controller="form-controller">
+    <form class="form-horizontal" id="productForm" role="form" ng-submit="updateProduct(this)">
+        <input type="number" ng-hide="true" ng-model="productId">
+        <div class="list-group-item col-sm-12 col-lg-12 col-md-12 col-xs-12" style="padding-left: 0;">
+            <div class=" col-sm-4 col-md-4 col-lg-4 col-xs-4" style="text-align: center; padding-left: 0;">
+                <div class="upload-button" type="file" capture="camera" ngf-select="uploadFiles($file,$errorfile)"
+                     ng-model="data.file" accept="image/jpeg,image/gif,image/png" ngf-max-height="1000"
+                     ngf-max-size="1MB">
+                    <img class="uploadpic img-rounded" src="{{imgSrc}}" ng-model="product.img"
+                         ng-bind="product.productImg=imgSrc" alt="商品照片"/>
+                    <div class="glyphicon glyphicon-camera uploadpic-label">点击上传照片</div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8" style="padding: 0;">
+                <div class="input-group-lg form-group form-div">
+                    <label for="productName" class="col-sm-4 col-md-4 col-lg-4 col-xs-3 input-label"
+                           style="padding-right: 0;">商品名称:</label>
+                    <div class="col-sm-8 col-md-8 col-lg-8 col-xs-9" style="padding-left: 0;padding-right: 0;">
+                        <input type="text" class="form-control input-input" id="productName" name="productName"
+                               ng-model="productName" style="height: 2rem;" placeholder="请输入名称" required="required">
+                    </div>
+                </div>
+                <div class="input-group-lg form-group form-div" style="padding-top: 1rem;">
+                    <label class="col-sm-12 col-md-12 col-lg-12 col-xs-12 input-label"
+                           style="padding-right: 0;">商品详情:</label>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding-left:0;padding-right: 0;">
+                        <textarea class="form-control input-input" rows="5" required="required" ng-id="productDetail"
+                                  name="productDescription" ng-model="productDescription"
+                                  placeholder="请详细描述商品的具体信息"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 2rem; ">&nbsp;</div>
+        <div class="list-group " style="padding: 0;">
+            <ul class="list-ul">
+                <li class="list-group-item list-ul-li col-sm-12 col-lg-12 col-md-12 col-xs-12">
+                    <div class="input-group form-group input-group-lg" style="margin-bottom: 0;">
+                        <img src="../../images/costPrice.png" alt="成本"
+                             class="col-sm-2 col-md-2 col-lg-2 col-xs-2 product-icon"/>
+                        <label class="col-sm-2 col-md-2 col-lg-2 col-xs-2 control-label input-label"
+                               style="padding-right: 0;margin-bottom: 0;margin-top: 0.8rem;">商品成本 </label>
+                        <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8 input-group" style="text-align: right;">
+                            <input type="number" step="0.01" class="form-control input-input second-input"
+                                   name="productCostPrice" ng-model="productCostPrice" required="required"
+                                   style="padding: 0;"/>
+                            <label class="input-group-addon input-label">元</label>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item list-ul-li col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="input-group form-group input-group-lg" style="margin-bottom: 0;">
+                        <img src="../../images/price.png" alt="定价"
+                             class="col-sm-2 col-md-2 col-lg-2 col-xs-2 product-icon"/>
+                        <label class="col-sm-2 col-md-2 col-lg-2 col-xs-2 control-label input-label"
+                               style="padding-right: 0;margin-bottom: 0;margin-top: 0.8rem;">商品价格</label>
+                        <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8 input-group">
+                            <input type="number" step="0.01" class="form-control input-input second-input"
+                                   name="productPrice" ng-model="productPrice" required="required" style="padding: 0;"/>
+                            <label class="input-group-addon input-label">元</label>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item list-ul-li col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="input-group form-group input-group-lg" style="margin-bottom: 0;">
+                        <img src="../../images/kucun.png" alt="库存量"
+                             class="col-sm-2 col-md-2 col-lg-2 col-xs-2 product-icon"/>
+                        <label class="col-sm-2 col-md-2 col-lg-2 col-xs-2 control-label input-label"
+                               style="padding-right: 0;margin-bottom: 0;margin-top: 0.8rem;">商品库存</label>
+                        <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8 input-group">
+                            <input type="number" class="form-control input-input second-input" name="productQuantity"
+                                   ng-model="productQuantity" required="required" style="padding: 0;">
+                            <label class="input-group-addon input-label">件</label>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item list-ul-li col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="input-group form-group input-group-lg" style="margin-bottom: 0;">
+                        <img src="../../images/zhonglei.png" alt="商品类别"
+                             class="col-sm-2 col-md-2 col-lg-2 col-xs-2 product-icon"/>
+                        <label class="col-sm-2 col-md-2 col-lg-2 col-xs-2 control-label input-label"
+                               style="padding-right: 0;margin-bottom: 0;margin-top: 0.8rem;">商品种类</label>
+                        <div class="col-sm-8 col-md-8 col-lg-8 col-xs-8">
+                            <select class="selectpicker" id="selectpicker" data-live-search="true" data-size="8"
+                                    data-style="selectbox" ng-model="productType" data-live-search-placeholder="搜索"
+                                    ng-options="x.productTypeName
+									for
+									x in type" required="required">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-12" style="text-align: center;">
+            <button type="submit" class="btn btn-primary btn-lg"
+                    style="width:10rem;height: 3rem; margin: 5rem;font-size: 1.5rem;">更新商品
+            </button>
+        </div>
+    </form>
+</div>
+<!--<div class="div-footer" ng-include="'footer.html'"></div>-->
+</body>
+<script>
+    $('#selectpicker').selectpicker('render');
+    $('#selectpicker').selectpicker('refresh');
+</script>
+</html>
