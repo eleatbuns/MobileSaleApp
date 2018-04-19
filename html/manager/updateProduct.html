@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../js/angular.js"></script>
     <script type="text/javascript" src="../../js/ng-file-upload.js"></script>
-    <script type="text/javascript" src="../../js/update-product.js"></script>
     <script type="text/javascript" src="../../bootstrap/js/bootstrap-select.js"></script>
     <script type="text/javascript" src="../../js/base-config.js"></script>
 </head>
@@ -27,8 +26,8 @@
                 <div class="upload-button" type="file" capture="camera" ngf-select="uploadFiles($file,$errorfile)"
                      ng-model="data.file" accept="image/jpeg,image/gif,image/png" ngf-max-height="1000"
                      ngf-max-size="1MB">
-                    <img class="uploadpic img-rounded" src="{{imgSrc}}" ng-model="product.img"
-                         ng-bind="product.productImg=imgSrc" alt="商品照片"/>
+                    <img class="uploadpic img-rounded" src="{{imgSrc}}" ng-model="productImg"
+                         ng-bind="productImg=imgSrc" alt="商品照片"/>
                     <div class="glyphicon glyphicon-camera uploadpic-label">点击上传照片</div>
                 </div>
             </div>
@@ -126,6 +125,7 @@
 </div>
 <!--<div class="div-footer" ng-include="'footer.html'"></div>-->
 </body>
+<script type="text/javascript" src="../../js/update-product.js"></script>
 <script>
     $('#selectpicker').selectpicker('render');
     $('#selectpicker').selectpicker('refresh');

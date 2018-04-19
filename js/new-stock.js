@@ -1,4 +1,4 @@
-var app = angular.module("new-stock", ['ngFileUpload']);
+let app = angular.module("new-stock", ['ngFileUpload']);
 
 app.controller("new-stock-controller", function ($scope, $http, $window) {
     $scope.hasback = false;
@@ -27,10 +27,10 @@ app.controller("new-stock-controller", function ($scope, $http, $window) {
      */
     $scope.addNewProduct = function (product) {
 
-        var image = new Image();
+        let image = new Image();
         image.src = "../../images/uploadPic.png";
 
-        if (product.productImg == "../../images/uploadPic.png") {
+        if (product.productImg === "../../images/uploadPic.png") {
             if (confirm("您确定要使用默认图片吗？")) {
                 product.productImg = getBase64Image(image);
             } else {
@@ -50,7 +50,7 @@ app.controller("new-stock-controller", function ($scope, $http, $window) {
             }
         }
 
-        var data = new FormData();
+        let data = new FormData();
         data.append("productName", product.productName);
         data.append("productPrice", product.productPrice);
         data.append("productCostPrice", product.productCostPrice);
@@ -73,15 +73,15 @@ app.controller("new-stock-controller", function ($scope, $http, $window) {
                     if (confirm("创建商品成功，还要继续创建吗")) {
                         $window.location.reload();
                     } else {
-                        $window.location = "header.html"
+                        $window.location = "productManager.html"
                     }
                 } else {
                     alert("增加失败，请检查数据是否正确")
                 }
             },
             function errorCallback(response) {
-                alert("系统出现了一些问题，增加失败，重试")
-                console.log("error")
+                alert("系统出现了一些问题，增加失败，重试");
+                console.log("error");
                 console.log(response);
             });
     }
@@ -93,7 +93,7 @@ app.controller("form-controller", function ($scope, $window, $http, Upload) {
     $scope.form = { //用于绑定提交内容，图片或其他数据
         image: {},
     };
-    $scope.thumb; //用于存放图片的base64
+    $scope.thumb = ""; //用于存放图片的base64
 
     $scope.uploadFiles = function (file, errorFile) { //单次提交图片的函数
         $scope.reader.readAsDataURL(file); //FileReader的方法，把图片转成base64
@@ -108,12 +108,11 @@ app.controller("form-controller", function ($scope, $window, $http, Upload) {
 });
 
 function getBase64Image(img) {
-    var canvas = document.createElement("canvas");
+    let canvas = document.createElement("canvas");
     canvas.width = img.width;
     canvas.height = img.height;
-    var ctx = canvas.getContext("2d");
+    let ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0, img.width, img.height);
-    var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
-    var dataURL = canvas.toDataURL("data:image/" + ext);
-    return dataURL;
+    let ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
+    return canvas.toDataURL("data:image/" + ext);
 }

@@ -23,7 +23,7 @@
 <div ng-include="'header.html'"></div>
 
 <div class="container">
-    <div class="list-group-item col-sm-12 col-lg-12 col-md-12 col-xs-12">
+    <div class="list-group-item col-sm-12 col-lg-12 col-md-12 col-xs-12" style="position: fixed;">
         <label class="col-sm-6 col-lg-6 col-md-6 col-xs-5" style="padding-top: 0.5rem;">选择商品类别：</label>
         <select class="selectpicker" id="selectpicker" data-live-search="true" data-size="8" data-style="selectbox"
                 ng-model="product.productType"
@@ -34,32 +34,47 @@
             <option value="">全部</option>
         </select>
     </div>
-</div>
-<div style="margin-top: 1rem;width: 100%">
-    <ul class="waterfall-list list-group" ng-waterfall cols="2" style="padding: 0;">
-        <li ng-repeat="image in images" repeat-finished style="list-style-type:none;float:left">
-            <div class="thumbnail">
-                <img src="{{image.productImg}}" alt="{{image.productName}}">
-                <div>
-                    <h5>{{image.productName}}
-                        <small>{{image.productDescription}}</small>
-                    </h5>
-                    <label>价格：<small>{{image.productPrice}}</small>元</label>
-                    <label style="float: right">成本：<small>{{image.productCostPrice}}</small>元</label><br>
-                    <label>库存量：<small>{{image.productQuantity}}</small></label>
-                    <label style="float: right">状态：<span style="color: #D9534F;">{{image.sellingState?'在售':'下架'}}</span></label>
-                    <p hidden>{{image.productId}}</p>
-                    <p style="text-align: center">
-                        <a href="#" class="btn btn-primary" role="button" ng-click="updateProduct(this.image)">更新</a>
-                        <a href="#" class="btn btn-danger" role="button">下架</a>
-                    </p>
+    <div style="margin-top: 5rem;width: 100%">
+        <ul class="waterfall-list list-group" ng-waterfall cols="2" style="padding: 0;">
+            <li ng-repeat="image in images" repeat-finished style="list-style-type:none;float:right">
+                <div class="thumbnail">
+                    <img src="{{image.productImg}}" alt="{{image.productName}}">
+                    <div>
+                        <h5><span ng-bind="image.productName"></span>
+                            <small ng-bind="image.productDescription"></small>
+                        </h5>
+                        <label>价格：
+                            <small><span ng-bind="image.productPrice"></span></small>
+                            元</label>
+                        <label style="float: right">成本：
+                            <small ng-bind="image.productCostPrice"></small>
+                            元</label><br>
+                        <label>库存量：
+                            <small ng-bind="image.productQuantity"></small>
+                        </label>
+                        <label style="float: right">状态：<span style="color: #D9534F;"
+                                                             ng-bind="image.sellingState?'在售':'下架'"></span></label>
+                        <p hidden>{{image.productId}}</p>
+                        <p style="text-align: center">
+                            <a href="#" class="btn btn-primary" role="button"
+                               ng-click="updateProduct(this.image)">更新</a>
+                            <a href="#" class="btn btn-danger" ng-if="image.sellingState" role="button"
+                               ng-click="saleOFF(this.image)">下架</a>
+                            <a href="#" class="btn btn-warning" ng-if="!image.sellingState" role="button"
+                               ng-click="saleOn(this.image)">上架</a>
+                            <a href="#" class="btn btn-default" role="button"
+                               ng-click="deleteProduct(this.image)">删除</a>
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </li>
-    <div class="loadMore" ng-if="loadMore" ng-infinite-scroll ng-click="loadMoreData()">{{loadText}}</div>
-    </ul>
+            </li>
+        </ul>
+        <p ng-hide="true">{{currentPage}}{{totalPage}}{{nextPage}}</p>
+        <div class="loadMore" ng-if="loadMore" ng-infinite-scroll ng-click="loadMoreData()"
+             ng-bind="loadText"></div>
+    </div>
 </div>
-<div class="div-footer" ng-include="'footer.html'"/>
+<div class="div-footer" ng-include="'footer.html'"></div>
 </body>
 <script>
     $('.selectpicker').selectpicker('render');

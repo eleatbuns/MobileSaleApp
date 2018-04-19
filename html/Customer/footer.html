@@ -1,7 +1,7 @@
 <footer>
 	<table class="footer-table" id="footer-table">
 		<tr>
-			<td >
+			<td ng-click="jumpPage('homepage.html')">
 				<img class="footer-icon" ng-src="../../images/customer.png">
 				<p class="icon-label">客户</p>
 			</td>
@@ -14,3 +14,8 @@
 		</tr>
 	</table>
 </footer>
+<script>
+	function jumpPage(jumplocation) {
+		window.location = jumplocation;
+    }
+</script>

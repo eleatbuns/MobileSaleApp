@@ -3,7 +3,16 @@ var app = angular.module("update-product", ['ngFileUpload']);
 app.controller("update-product-controller", function ($scope, $http, $window) {
     $scope.hasback = true;
     $scope.title = "更新商品";
-    // $scope.type = [];
+
+    //直接访问本界面时拦截
+    angular.element(document).ready(function() {
+        let storage = window.localStorage;
+        if (storage.getItem("productId") == null ||
+            storage.getItem("productId") === 'undefined'||
+            angular.isUndefined(storage.getItem("productId"))){
+            window.location = 'productManager.html';
+        }
+    });
 
     /*
      * 获取商品种类表
@@ -68,8 +77,10 @@ app.controller("update-product-controller", function ($scope, $http, $window) {
         data.append("productQuantity", product.productQuantity);
         data.append("productDescription", product.productDescription);
         data.append("productImg", product.productImg);
+        console.log(data.get("productId"));
+        console.log(data.get("productImg"));
         $http({
-            method: "PUT",
+            method: "POST",
             url: BASEURL + "product/update",
             data: data,
             headers: {
@@ -88,7 +99,7 @@ app.controller("update-product-controller", function ($scope, $http, $window) {
             },
             function errorCallback(response) {
                 alert("系统出现了一些问题，增加失败，重试");
-                console.log("error")
+                console.log("error");
                 console.log(response);
             });
     }
@@ -114,25 +125,17 @@ app.controller("form-controller", function ($scope, $window, $http, Upload) {
 
 });
 
-// function getBase64Image(img) {
-//     var canvas = document.createElement("canvas");
-//     canvas.width = img.width;
-//     canvas.height = img.height;
-//     var ctx = canvas.getContext("2d");
-//     ctx.drawImage(img, 0, 0, img.width, img.height);
-//     var ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
-//     var dataURL = canvas.toDataURL("data:image/" + ext);
-//     return dataURL;
-// }
-
+/**
+ * 删除掉本地保存的商品信息
+ */
 function removeLocalStage() {
     let storage = window.localStorage;
-    storage.remove("productId");
-    storage.remove("productName");
-    storage.remove("productPrice");
-    storage.remove("productCostPrice");
-    storage.remove("productTypeId");
-    storage.remove("productQuantity");
-    storage.remove("productDescription");
-    storage.remove("productImg");
+    storage.removeItem("productId");
+    storage.removeItem("productName");
+    storage.removeItem("productPrice");
+    storage.removeItem("productCostPrice");
+    storage.removeItem("productTypeId");
+    storage.removeItem("productQuantity");
+    storage.removeItem("productDescription");
+    storage.removeItem("productImg");
 }

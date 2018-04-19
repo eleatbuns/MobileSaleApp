@@ -1,11 +1,12 @@
 <footer>
 	<table class="footer-table" id="footer-table">
 		<tr>
-			<td>
+			<td onclick="jumpPage('newStock.html')">
 				<img class="footer-icon" ng-src="../../images/newstock.png">
 				<p class="icon-label">商品上新</p>
 			</td>
-			<td><img class="footer-icon" ng-src="../../images/productmanager.png">
+			<td onclick="jumpPage('productManager.html')">
+				<img class="footer-icon" ng-src="../../images/productmanager.png">
 				<p class="icon-label">商品管理</p>
 			</td>
 			<td><img class="footer-icon" ng-src="../../images/usermanager.png">
@@ -14,7 +15,12 @@
 		</tr>
 	</table>
 </footer>
+<script>
+	function jumpPage(jumpLocation) {
+		window.location = jumpLocation;
+    }
 
+</script>
 <style>
 	.footer-table {
 		height: 3em;
@@ -27,7 +33,7 @@
 	}
 	
 	.footer-icon {
-		widows: 2em;
+		width: 2em;
 		height: 2em;
 	}
 	
